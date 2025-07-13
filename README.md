@@ -46,4 +46,12 @@ This repository contains my hands-on learning and practice projects while master
 ---
 
 ## 📂 Folder Structure
+spring-boot-learning/
+├── spring-core/
+├── jpa-hibernate/
+├── spring-rest-crud/
+├── mvc-thymeleaf-crud/
+├── spring-security/
+├── spring-aop/
 
+> Each folder contains focused examples and small projects related to the specific topic.
