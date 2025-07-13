@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Student Confirmation</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #f2f2f2;
+            padding: 30px;
+        }
+
+        .confirmation-container {
+            background-color: #fff;
+            max-width: 500px;
+            margin: 0 auto;
+            padding: 25px 30px;
+            border-radius: 10px;
+            box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+            text-align: center;
+        }
+
+        h2 {
+            color: #28a745;
+            margin-bottom: 20px;
+        }
+
+        p {
+            font-size: 18px;
+            color: #333;
+            margin: 10px 0;
+        }
+
+        .btn {
+            display: inline-block;
+            margin-top: 20px;
+            padding: 10px 20px;
+            background-color: #007bff;
+            color: white;
+            text-decoration: none;
+            border-radius: 6px;
+            transition: background-color 0.3s;
+        }
+
+        .btn:hover {
+            background-color: #0056b3;
+        }
+    </style>
+</head>
+<body>
+
+<div class="confirmation-container">
+    <h2>Registration Successful!</h2>
+
+    <p><strong>First Name:</strong> <span th:text="${student.firstName}"></span></p>
+    <p><strong>Last Name:</strong> <span th:text="${student.lastName}"></span></p>
+    <p><strong>Email:</strong> <span th:text="${student.email}"></span></p>
+    <p><strong>Gender:</strong> <span th:text="${student.gender}"></span></p>
+    <p><strong>Course:</strong> <span th:text="${student.course}"></span></p>
+    <p><strong>Favorite Systems:</strong>
+        <span th:if="${#lists.isEmpty(student.favSystems)}">None selected</span>
+    <ul th:if="${!#lists.isEmpty(student.favSystems)}">
+        <li th:each="system : ${student.favSystems}" th:text="${system}"></li>
+    </ul>
+    </p>
+    <a class="btn" th:href="@{/showForm}">Register Another Student</a>
+</div>
+
+</body>
+</html>

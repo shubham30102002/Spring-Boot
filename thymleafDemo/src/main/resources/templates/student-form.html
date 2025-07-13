@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Student Form</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #f2f2f2;
+            padding: 30px;
+        }
+
+        h2 {
+            text-align: center;
+            color: #333;
+        }
+
+        .form-container {
+            background-color: #fff;
+            max-width: 500px;
+            margin: 0 auto;
+            padding: 25px 30px;
+            border-radius: 10px;
+            box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+        }
+
+        table {
+            width: 100%;
+        }
+
+        td {
+            padding: 10px;
+            vertical-align: middle;
+        }
+
+        input[type="text"],
+        input[type="email"],
+        select {
+            width: 100%;
+            padding: 8px 10px;
+            border: 1px solid #ccc;
+            border-radius: 6px;
+            box-sizing: border-box;
+        }
+
+        input[type="radio"] {
+            margin-right: 5px;
+        }
+
+        button {
+            background-color: #007bff;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 6px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        button:hover {
+            background-color: #0056b3;
+        }
+    </style>
+</head>
+<body>
+
+<h2>Student Registration Form</h2>
+
+<div class="form-container">
+    <form th:action="@{/processStudent}" th:object="${student}" method="post">
+        <table>
+            <tr>
+                <td>First Name:</td>
+                <td><input type="text" th:field="*{firstName}" placeholder="Enter First Name"/></td>
+            </tr>
+            <tr>
+                <td>Last Name:</td>
+                <td><input type="text" th:field="*{lastName}" placeholder="Enter Last Name"/></td>
+            </tr>
+            <tr>
+                <td>Email:</td>
+                <td><input type="email" th:field="*{email}" placeholder="Enter Email"/></td>
+            </tr>
+            <tr>
+                <td>Gender:</td>
+                <td>
+                    <label>
+                        <div th:each="tempGender : ${genders}">
+                            <label>
+                                <input type="radio"
+                                       th:field="*{gender}"
+                                       th:value="${tempGender}"/>
+                                <span th:text="${tempGender}"></span>
+                            </label>
+                        </div>
+                    </label>
+                </td>
+            </tr>
+            <tr>
+                <td>Course:</td>
+                <td>
+                    <select th:field="*{course}">
+                        <option value="">-- Select Course --</option>
+                        <option th:each="tempCourse : ${courses}" th:value="${tempCourse}" th:text="${tempCourse}" />
+                    </select>
+                </td>
+            </tr>
+            <tr>
+                <td>Favourite Operating System:</td>
+                <td>
+                <div th:each="system : ${favSystemList}">
+                    <label>
+                        <input type="checkbox"
+                               th:field="*{favSystems}"
+                               th:value="${system}"/>
+                        <span th:text="${system}"></span>
+                    </label>
+                    <br/>
+                </div>
+                </td>
+
+            </tr>
+            <tr>
+                <td colspan="2" style="text-align: center;">
+                    <button type="submit">Submit</button>
+                </td>
+            </tr>
+        </table>
+    </form>
+</div>
+
+</body>
+</html>
